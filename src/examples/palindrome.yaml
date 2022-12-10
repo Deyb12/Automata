@@ -1,0 +1,66 @@
+name: palindrome
+source code: |
+# Accepts palindromes made of the symbols 'a' and 'b'
+input: 'abcacba' # try a, ab, bb, babab
+blank: ' '
+start state: start
+synonyms:
+  accept: {R: accept}
+  reject: {R: reject}
+# A palindrome is either the empty string, a single symbol,
+# or a (shorter) palindrome with the same symbol added to both ends.
+table:
+  start:
+    a: {write: ' ', R: haveA}
+    b: {write: ' ', R: haveB}
+    c: {write: ' ', R: haveC}
+    ' ': accept # empty string
+  haveA:
+    [a,b,c]: R
+    ' ': {L: matchA}
+  haveB:
+    [a,b,c]: R
+    ' ': {L: matchB}
+  haveC:
+    [a,b,c]: R
+    ' ': {L: matchC}
+  matchA:
+    a: {write: ' ', L: back} # same symbol at both ends
+    b: reject
+    c: reject
+    ' ': accept # single symbol
+  matchB:
+    a: reject
+    b: {write: ' ', L: back} # same symbol at both ends
+    c: reject
+    ' ': accept # single symbol
+  matchC:
+    a: reject
+    b: reject
+    c: {write: ' ', L: back} # same symbol at both ends
+    ' ': accept # single symbol
+  back:
+    [a,b,c]: L
+    ' ': {R: start}
+  accept:
+  reject:
+
+
+
+  # Exercise:
+
+  # • Modify the machine to include 'c' in the symbol alphabet,
+  #   so it also works for strings like 'cabbac'.
+positions:
+  haveA:  {x: 240, y: 185}
+  start:  {x: 400, y: 185}
+  haveB:  {x: 560, y: 185}
+  haveC:  {x: 320, y: 185}
+
+  matchA: {x: 240, y: 315}
+  back:   {x: 400, y: 315}
+  matchB: {x: 560, y: 315}
+  matchC: {x: 320, y: 315}
+
+  accept: {x: 400, y: 55}
+  reject: {x: 400, y: 445}
