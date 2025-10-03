@@ -47,7 +47,7 @@ The tool displays animated **state diagrams and tape execution**, making it easi
 ## 📂 Project Structure
 
 ```
-Automata-Simulator/
+Turing-Machine-Simulator/
 ├── index.html          # Main interface
 ├── package.json        # Project metadata & dependencies
 ├── webpack.config.js   # Build configuration
@@ -73,7 +73,7 @@ Automata-Simulator/
 
    ```bash
    git clone <repo-url>
-   cd Automata-Simulator
+   cd Turing-Machine-Simulator-Simulator
    ```
 
 2. **Install dependencies**
